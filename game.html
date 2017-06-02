@@ -1,7 +1,7 @@
 <!doctype.html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">s
 <style type='text/css'>
 body
 {
@@ -17,25 +17,28 @@ Cherry Jackpot game
 <script type='text/javascript'>
 var y=0;
 var z;
+var x;
+var x1;
+var x2;
 
 function call()
 {
 	z=setInterval(function update(){
-	var x=document.getElementById('txtfield').value=getRandom(0,100);
-	var x1=document.getElementById('txtfield1').value=getRandom(0,100);
-	var x2=document.getElementById('txtfield2').value=getRandom(0,100);
+	x=document.getElementById('txtfield').value=getRandom(0,3);
+	x1=document.getElementById('txtfield1').value=getRandom(0,3);
+	x2=document.getElementById('txtfield2').value=getRandom(0,3);
 	document.getElementById('txtfield').value=x;
 	document.getElementById('txtfield1').value=x1; 
 	document.getElementById('txtfield2').value=x2;
+},10);
+}
+function stop()
+{
 	if(x==x1&&x1==x2)
 	{
 document.getElementById('points').value=y+1;
 y++;
 	}
-},10);
-}
-function stop()
-{
 	clearInterval(z);
 }
 function getRandom(min,max)
@@ -46,9 +49,9 @@ function getRandom(min,max)
 }
 </script>
 <form>
-<input id ="txtfield" type="text" value="100" >
-<input id="txtfield1" type="text" value="100">
-<input id="txtfield2" type="text" value="100">
+<input id ="txtfield" type="text" value="5" >
+<input id="txtfield1" type="text" value="5">
+<input id="txtfield2" type="text" value="5">
 <input type="button" value="Spin" onclick="call()">
 <input type="button" value="Stop" onclick="stop()">
 </form>
