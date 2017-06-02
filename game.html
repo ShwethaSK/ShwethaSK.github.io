@@ -1,10 +1,60 @@
 <!doctype.html>
 <html>
 <head>
+<style type='text/css'>
+body
+{
+	color:red;
+	background-color:lightgreen;
+}
+</style>
 <title>
 Cherry Jackpot game
 </title>
 </head>
 <body>
-<a href="index.html" title="Click to go to home page">Click here to go back</a>
+<script type='text/javascript'>
+var y=0;
+var z;
+
+function call()
+{
+	z=setInterval(function update(){
+	var x=document.getElementById('txtfield').value=getRandom(0,100);
+	var x1=document.getElementById('txtfield1').value=getRandom(0,100);
+	var x2=document.getElementById('txtfield2').value=getRandom(0,100);
+	document.getElementById('txtfield').value=x;
+	document.getElementById('txtfield1').value=x1; 
+	document.getElementById('txtfield2').value=x2;
+	if(x==x1&&x1==x2)
+	{
+document.getElementById('points').value=y+1;
+y++;
+	}
+},10);
+}
+function stop()
+{
+	clearInterval(z);
+}
+function getRandom(min,max)
+{
+  min=Math.ceil(min);
+  max=Math.floor(max);
+  return Math.floor(Math.random()*(max-min))+min;
+}
+</script>
+<form>
+<input id ="txtfield" type="text" value="100" >
+<input id="txtfield1" type="text" value="100">
+<input id="txtfield2" type="text" value="100">
+<input type="button" value="Spin" onclick="call()">
+<input type="button" value="Stop" onclick="stop()">
+</form>
+<strong>Points</strong>
+<form>
+<input id="points" type="text" value="0"> 
+</form>
+<a href="index.html" title="Click to go to home page"><strong>Click here to go back</strong></a>
+</body>
 </html>
