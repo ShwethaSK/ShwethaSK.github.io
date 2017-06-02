@@ -1,12 +1,13 @@
 <!doctype.html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">s
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style type='text/css'>
 body
 {
+    font-family:Cursive;
 	color:red;
-	background-color:lightgreen;
+	background-image:url("smiley.jpg");
 }
 </style>
 <title>
@@ -14,6 +15,9 @@ Cherry Jackpot game
 </title>
 </head>
 <body>
+<h1> Welcome to the Cherry Jackpot Game</h1>
+<p>Click on the spin button to start spinning and the stop button to stop the spinning. If all the three numbers are same, your points will increase by 1 otherwise it will decrease by 1. You can click on the refresh button to reload the page and begin the game once again.</p>
+<h2>Go ahead...Happy gaming!!!</h2>
 <script type='text/javascript'>
 var y=0;
 var z;
@@ -39,6 +43,11 @@ function stop()
 document.getElementById('points').value=y+1;
 y++;
 	}
+	else
+	{
+		document.getElementById('points').value=y-1;
+		y--;
+	}
 	clearInterval(z);
 }
 function getRandom(min,max)
@@ -47,13 +56,18 @@ function getRandom(min,max)
   max=Math.floor(max);
   return Math.floor(Math.random()*(max-min))+min;
 }
+function refresh()
+{
+	location.reload();
+}
 </script>
 <form>
-<input id ="txtfield" type="text" value="5" >
-<input id="txtfield1" type="text" value="5">
-<input id="txtfield2" type="text" value="5">
+<input id ="txtfield" type="text" value="0">
+<input id="txtfield1" type="text" value="0">
+<input id="txtfield2" type="text" value="0">
 <input type="button" value="Spin" onclick="call()">
 <input type="button" value="Stop" onclick="stop()">
+<input type="button" value="Refresh" onclick="refresh()">
 </form>
 <strong>Points</strong>
 <form>
