@@ -1,82 +1,83 @@
 	<!doctype.html>
-	<html>
-	<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- controlling responsiveness -->
-	<style type='text/css'> 
-	body
-	{
-	    font-family:Cursive;
-		color:red;
-		background-image:url("smiley.jpg");
-	}
-	</style>
-	<title> <!-- setting title of web page -->
-	Cherry Jackpot game
-	</title>
-	</head>
-	<body>
-	<h1> Welcome to the Cherry Jackpot Game</h1> <!-- heading for the page-->
-	<p><strong>Click on the spin button to start spinning and the stop button to stop the spinning. If all the three numbers are same, your points will increase by 1 otherwise it will decrease by 1. You can click on the refresh button to reload the page and begin the game once again.</strong></p> <!-- instructions for playing the game -->
-	<h2>Go ahead...Happy gaming!!!</h2>
-	<script type='text/javascript'>
-	var y=0;
-	var z;
-	var x;
-	var x1;
-	var x2;
-	var m=0;
-		function call() //function called when spin button is pressed
+		<html>
+		<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- controlling responsiveness -->
+		<style type='text/css'> 
+		body
 		{
-			if(m==0){ //to ensure that no bug develops when spin button is pressed twice
-			z=setInterval(function update(){ //calling the function every 1/10 th of a second
-			x=document.getElementById('txtfield').value=getRandom(0,3); //setting value of the first text box equal to a random value between 1 and 3
-			x1=document.getElementById('txtfield1').value=getRandom(0,3);//setting value of the second text box equal to a random value between 1 and 3
-			x2=document.getElementById('txtfield2').value=getRandom(0,3); //setting value of the third text box equal to a random value between 1 and 3
-			document.getElementById('txtfield').value=x;
-			document.getElementById('txtfield1').value=x1; 
-			document.getElementById('txtfield2').value=x2;
-		},10);
-			m++;
+		    font-family:Cursive;
+			color:red;
+			background-image:url("smiley.jpg");
 		}
+		</style>
+		<title>   
+		Cherry Jackpot game
+		</title>
+		</head>
+		<body>
+		<h1> Welcome to the Cherry Jackpot Game</h1> <!-- heading for the page-->
+		<p><strong>Click on the spin button to start spinning and the stop button to stop the spinning. If all the three numbers are same, your points will increase by 1 otherwise it will decrease by 1. You can click on the refresh button to reload the page and begin the game once again.</strong></p> <!-- instructions for playing the game -->
+		<h2>Go ahead...Happy gaming!!!</h2>
+		<script type='text/javascript'>
+		var y=0;
+		var z;
+		var x;
+		var x1;
+		var x2;
+		var m=0;
+		var images=["image1.jpg","pacman_right.jpg","image3.jpg"];
+			function call() //function called when spin button is pressed
+			{
+				if(m==0){ //to ensure that no bug develops when spin button is pressed twice
+				z=setInterval(function update(){ //calling the function every 1/10 th of a second
+				x=getRandom(0,3); //setting value of x box equal to a random value between 1 and 3
+				x1=getRandom(0,3);//setting value of x1 equal to a random value between 1 and 3
+				x2=getRandom(0,3); //setting value of x2 equal to a random value between 1 and 3
+		document.getElementById('txtfield').style.backgroundImage=images[x];
+	document.getElementById('txtfield1').style.backgroundImage=images[x1];
+	document.getElementById('txtfield2').style.backgroundImage=images[x2];
+			},10);
+				m++;
+			}
+			}
+			function stop() //function called when stop button is pressed
+			{
+				if(x==x1&&x1==x2) //checking if the values in the three textboxes are equal
+			{
+		document.getElementById('points').value=y+1; //incrementing points by one
+		y++;
+			}
+			else
+			{
+				document.getElementById('points').value=y-1; //if the values in the textboxes are not equal the points are decreased by one.
+				y--;
+			}
+			clearInterval(z); 
+			m=0;
 		}
-		function stop() //function called when stop button is pressed
+		function getRandom(min,max) //the function called to set random values to the textboxes
 		{
-			if(x==x1&&x1==x2) //checking if the values in the three textboxes are equal
-		{
-	document.getElementById('points').value=y+1; //incrementing points by one
-	y++;
+		  min=Math.ceil(min); //taking the smallest number greater than or equal to min
+		  max=Math.floor(max); //taking the greatest number lesser than or equal to max
+		  return Math.floor(Math.random()*(max-min))+min; //returning a random integer value
 		}
-		else
+		function refresh() //function called when refresh button is pressed
 		{
-			document.getElementById('points').value=y-1; //if the values in the textboxes are not equal the points are decreased by one.
-			y--;
-		}
-		clearInterval(z); 
-		m=0;
-	}
-	function getRandom(min,max) //the function called to set random values to the textboxes
-	{
-	  min=Math.ceil(min); //taking the smallest number greater than or equal to min
-	  max=Math.floor(max); //taking the greatest number lesser than or equal to max
-	  return Math.floor(Math.random()*(max-min))+min; //returning a random integer value
-	}
-	function refresh() //function called when refresh button is pressed
-	{
-		location.reload(); //reload the page
-	}
-	</script>
-	<form>
-	<input id ="txtfield" type="text" value="0"> <!-- first textbox-->
-	<input id="txtfield1" type="text" value="0"> <!-- second textbox-->
-	<input id="txtfield2" type="text" value="0"> <!-- third textbox-->
-	<input type="button" value="Spin" onclick="call()"> <!-- spin button-->
-	<input type="button" value="Stop" onclick="stop()"> <!-- stop button-->
-	<input type="button" value="Refresh" onclick="refresh()"> <!-- refresh button-->
-	</form>
-	<strong>Points</strong>
-	<form>
-	<input id="points" type="text" value="0"> <!-- points textbox -->
-	</form>
-	<a href="index.html" title="Click to go to home page"><strong>Click here to go back</strong></a> <!-- link to first page -->
-	</body>
-	</html>
+			location.reload(); //reload the page
+		}   
+		</script>
+		<form>
+		<input type="text" id="txtfield" style="background-image:url(image1.jpg);" value=""> <!--setting image to first text box -->
+		<input type="text" id="txtfield1" style="background-image:url(pacman_right.jpg);" value=""> <!--setting image to second text box-->
+		<input type="text" id="txtfield2" style="background-image:url(image3.jpg);" value=""> <!-- setting image to thirs text box-->
+		<input type="button" value="Spin" onclick="call()"> <!-- spin button -->
+		<input type="button" value="Stop" onclick="stop()"> <!-- stop button -->
+		<input type="button" value="Refresh" onclick="refresh()"> <!-- refresh button-->
+		</form>
+		<strong>Points</strong>
+		<form>
+		<input id="points" type="text" value="0"> <!-- points textbox -->
+		</form>
+		<a href="index.html" title="Click to go to home page"><strong>Click here to go back</strong></a> <!-- link to first page -->
+		</body>
+		</html>
